@@ -14,13 +14,16 @@ spring:
     check-location: false
     baselineOnMigrate: true
   datasource:
-    url: 'jdbc:h2:file:./target/database/h2'
-    #url: jdbc:h2:mem:test_mem
-    username: sa
-    password: null
-    driverClassName: org.h2.Driver
-    max-active: 15
-
+#    url: 'jdbc:h2:file:./target/database/h2'
+#    #url: jdbc:h2:mem:test_mem
+#    username: sa
+#    password: null
+#    driverClassName: org.h2.Driver
+#    max-active: 15
+    url: 'jdbc:postgresql://localhost:5432/hapi'
+    username: admin
+    password: admin
+    driverClassName: org.postgresql.Driver
     # database connection pool size
     hikari:
       maximum-pool-size: 10
@@ -32,7 +35,7 @@ spring:
       #Hibernate dialect is automatically detected except Postgres and H2.
       #If using H2, then supply the value of ca.uhn.fhir.jpa.model.dialect.HapiFhirH2Dialect
       #If using postgres, then supply the value of ca.uhn.fhir.jpa.model.dialect.HapiFhirPostgres94Dialect
-      hibernate.dialect: ca.uhn.fhir.jpa.model.dialect.HapiFhirH2Dialect
+      hibernate.dialect: ca.uhn.fhir.jpa.model.dialect.HapiFhirPostgres94Dialect
   #      hibernate.hbm2ddl.auto: update
   #      hibernate.jdbc.batch_size: 20
   #      hibernate.cache.use_query_cache: false
@@ -102,7 +105,7 @@ hapi:
     #    default_pretty_print: true
     #    default_page_size: 20
     #    delete_expunge_enabled: true
-    #    enable_repository_validating_interceptor: true
+    enable_repository_validating_interceptor: true
     #    enable_index_missing_fields: false
     #    enable_index_of_type: true
     #    enable_index_contained_resource: false
